@@ -116,10 +116,12 @@ class _MyApp extends State<MyApp> {
                   SizedBox(width: 20),
                   Column(
                     children: [
-                  Center(
+                  Container(
                   child: _image == null
                       ? Text('No image selected')
               : Image.memory(_image!),
+                    width: 250,
+                    height:250,
     ),
                         // width: 250,
                         // height: 250,
