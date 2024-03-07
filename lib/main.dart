@@ -1,10 +1,42 @@
-import 'package:flutter/material.dart';
+import 'dart:html';
+import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
+import 'package:sediment_features/upload_image.dart';
+import 'package:image_picker/image_picker.dart';
 void main() {
   runApp(MyApp());
 }
+class MyApp extends StatefulWidget{
+  const MyApp({super.key});
+  State<MyApp> createState()=> _MyApp();
+}
 
-class MyApp extends StatelessWidget {
+class _MyApp extends State<MyApp> {
+  // late File _image;
+  // final picker = ImagePicker();
+  //
+  //
+  //
+  // Future getImage() async {
+  //   // final pickedFile = await picker.getImage(source: ImageSource.gallery);
+  //   File image = (await ImagePicker.pickImage(source: ImageSource.gallery)) as File;
+  //   setState(() {
+  //     if (image !=  null) {
+  //       _image = File(image.path);
+  //     } else {
+  //       print('No image selected');
+  //     }
+  //   });
+  // }
+
+  Uint8List? _image;
+  void selectImage(ImageSource gallery) async{
+   Uint8List img = await pickImage(ImageSource.gallery);
+   setState(() {
+     _image = img;
+   });
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -84,18 +116,23 @@ class MyApp extends StatelessWidget {
                   SizedBox(width: 20),
                   Column(
                     children: [
-                      Container(
-                        width: 300,
-                        height: 300,
-                        child: Image.asset(
-                          "assets/DVP021.jpg", // Replace this with your image path
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                  Center(
+                  child: _image == null
+                      ? Text('No image selected')
+              : Image.memory(_image!),
+    ),
+                        // width: 250,
+                        // height: 250,
+                        // child: Image.asset(
+                        //   // "assets/DVP021.jpg", // Replace this with your image path
+                        //   fit: BoxFit.cover,
+                      //   ),
+                      // ),
                       SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {
-                          // Add your upload image logic here
+                          selectImage(ImageSource.gallery);
+                          print(_image);
                         },
                         child: Text('Upload Image'),
                       ),
@@ -106,13 +143,13 @@ class MyApp extends StatelessWidget {
               SizedBox(height: 20),
               Expanded(
                 child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
+                  scrollDirection: Axis.vertical,
                   itemCount: 34,
                   itemBuilder: (context, index) {
                     return Container(
                       margin: EdgeInsets.only(right: 10),
-                      width: 50,
-                      height: 30,
+                      width:20,
+                      height: 50,
                       color: Colors.blue,
                       child: Center(
                         child: Text(
