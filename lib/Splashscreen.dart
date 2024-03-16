@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sediment_features/signuppage.dart';
+import 'package:iBIT/signuppage.dart';
 import 'HomePage.dart'; // Import your home page widget
 
 class SplashScreen extends StatelessWidget {
@@ -17,7 +17,7 @@ class SplashScreen extends StatelessWidget {
       backgroundColor: Colors.white, // Set your desired background color
       body: Center(
         child: Image.asset(
-          'assets/logo-color.png', // Adjust the path according to your logo file
+          'assets/logo-color-1.png', // Adjust the path according to your logo file
           width: 200, // Adjust the width according to your logo size
           height: 200, // Adjust the height according to your logo size
         ),

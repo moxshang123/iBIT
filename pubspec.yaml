@@ -59,7 +59,7 @@ dev_dependencies:
 flutter_launcher_icons:
     android: "launcher_icon"
     ios: true
-    image_path: "assets/logo-color.png"
+    image_path: "assets/logo-color-1.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -78,6 +78,8 @@ flutter:
      - assets/logo-color.png
      - assets/login-icon.png
      - assets/login-icon2.png
+     - assets/loginimage.png
+     - assets/logo-color-1.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

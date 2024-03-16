@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:sediment_features/loginpage.dart';
+import 'package:iBIT/loginpage.dart';
 
 void main() {
   runApp(SignUpPage());
@@ -14,21 +14,26 @@ class SignUpPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Sign Up',
       home: Scaffold(
-        body: Column(
-          children: [
-            // Image at the top
-            Container(
-              height: 320, // Adjust the height as needed
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/login-icon.png'), // Replace with your image path
-                  fit: BoxFit.cover,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(top: 110.0,left: 30,right: 30),
+            child: Column(
+              children: [
+                // Image at the top
+                Container(
+                  height: 320, // Adjust the height as needed
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/login-icon.png'), // Replace with your image path
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-              ),
+                // Sign-up form
+                SignUpForm(),
+              ],
             ),
-            // Sign-up form
-            SignUpForm(),
-          ],
+          ),
         ),
       ),
     );
@@ -60,73 +65,69 @@ class _SignUpFormState extends State<SignUpForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Full Name'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your full name';
-                }
-                return null;
-              },
-              onSaved: (value) {
-                _fullName = value ?? '';
-              },
-            ),
-            SizedBox(height: 20.0),
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Email Address'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email address';
-                }
-                // You can add email validation here if needed
-                return null;
-              },
-              onSaved: (value) {
-                _email = value ?? '';
-              },
-            ),
-            SizedBox(height: 20.0),
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Password'),
-              obscureText: true,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter a password';
-                }
-                // You can add password strength validation here if needed
-                return null;
-              },
-              onSaved: (value) {
-                _password = value ?? '';
-              },
-            ),
-            SizedBox(height: 20.0),
-            ElevatedButton(
-              onPressed: signUp,
-              child: Text('Sign Up'),
-            ),
-            SizedBox(height: 20.0),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => LoginPage()),
-                );
-              },
-              child: Text('Already have an account? Log in'),
-            ),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          TextFormField(
+            decoration: InputDecoration(labelText: 'Full Name'),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your full name';
+              }
+              return null;
+            },
+            onSaved: (value) {
+              _fullName = value ?? '';
+            },
+          ),
+          SizedBox(height: 20.0),
+          TextFormField(
+            decoration: InputDecoration(labelText: 'Email Address'),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your email address';
+              }
+              // You can add email validation here if needed
+              return null;
+            },
+            onSaved: (value) {
+              _email = value ?? '';
+            },
+          ),
+          SizedBox(height: 20.0),
+          TextFormField(
+            decoration: InputDecoration(labelText: 'Password'),
+            obscureText: true,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter a password';
+              }
+              // You can add password strength validation here if needed
+              return null;
+            },
+            onSaved: (value) {
+              _password = value ?? '';
+            },
+          ),
+          SizedBox(height: 20.0),
+          ElevatedButton(
+            onPressed: signUp,
+            child: Text('Sign Up'),
+          ),
+          SizedBox(height: 20.0),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
+            },
+            child: Text('Already have an account? Log in'),
+          ),
+        ],
       ),
     );
   }
 }
-
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
