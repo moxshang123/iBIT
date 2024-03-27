@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
   late Future<void> _initialization;
 
   // Initializing firestore instance
@@ -457,6 +457,10 @@ class _HomePageState extends State<HomePage> {
     // Add dots for the selected item
     _dots.addAll(_Features[_selectedVal]!);
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
 
 class DotPainter extends CustomPainter {

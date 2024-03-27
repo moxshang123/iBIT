@@ -9,34 +9,27 @@ class LoginPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Login Page',
       home: Scaffold(
-        body: Stack(
-          children: [
-            // Image at the top
-            Positioned(
-              top: 180,
-              left: 0,
-              right: 0,
-              height: 320, // Adjust the height as needed
-              child: Container(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(top: 110.0,left: 30,right: 30),
+            child: Column(
+            children: [
+              Container(
+                height: 320, // Adjust the height as needed
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/loginimage.png'), // Replace with your image path
+                    image: AssetImage('assets/login-icon2.png'), // Replace with your image path
                     fit: BoxFit.cover,
                   ),
                 ),
-              ),
-            ),
-            // Sign-up form
-            Positioned(
-              top: 320, // Adjust the top position as needed
-              left: 0,
-              right: 0,
-              child: LoginForm(),
-            ),
-          ],
+                ),
+              LoginForm(),
+              ],),
+              // Sign-up form
+          ),
         ),
       ),
-    );
+      );
   }
 }
 
@@ -69,7 +62,7 @@ class _LoginFormState extends State<LoginForm> {
           // User signed in successfully
           print('User signed in: ${user.email}');
 
-          // Navigate back to the homepage
+          // Navigate to the homepage
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => HomePage()),
           );
@@ -89,7 +82,7 @@ class _LoginFormState extends State<LoginForm> {
     return Form(
       key: _formKey,
       child: Padding(
-        padding: const EdgeInsets.only(top: 195.0),
+        padding: const EdgeInsets.only(top: 40.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
